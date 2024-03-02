@@ -218,13 +218,13 @@ func (u *UIModel) writeClusterSummary(resources []v1.ResourceName, stats Stats, 
 		}
 
 		u.progress.ShowPercentage = false
-		monthlyPrice := stats.TotalPrice * (365 * 24) / 12 // average hours per month
+		//monthlyPrice := stats.TotalPrice * (365 * 24) / 12 // average hours per month
 		// message printer formats numbers nicely with commas
 		enPrinter := message.NewPrinter(language.English)
-		clusterPrice := enPrinter.Sprintf("$%0.3f/hour | $%0.3f/month", stats.TotalPrice, monthlyPrice)
+		//clusterPrice := enPrinter.Sprintf("$%0.3f/hour | $%0.3f/month", stats.TotalPrice, monthlyPrice)
 		if firstLine {
-			enPrinter.Fprintf(w, "%d nodes\t(%s/%s)\t%s\t%s\t%s\t%s\n",
-				stats.NumNodes, used.String(), allocatable.String(), pctUsedStr, res, u.progress.ViewAs(pctUsed/100.0), clusterPrice)
+			enPrinter.Fprintf(w, "%d nodes\t(%s/%s)\t%s\t%s\t%s\n",
+				stats.NumNodes, used.String(), allocatable.String(), pctUsedStr, res, u.progress.ViewAs(pctUsed/100.0))
 		} else {
 			enPrinter.Fprintf(w, " \t%s/%s\t%s\t%s\t%s\t\n",
 				used.String(), allocatable.String(), pctUsedStr, res, u.progress.ViewAs(pctUsed/100.0))
